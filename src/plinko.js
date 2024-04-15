@@ -146,12 +146,6 @@ function draw()
   for (var i = 0; i < pucks.length; i++)
   {
     pucks[i].show();
-    //if (pucks[i].isOffScreen())
-    //{
-    //  World.remove(world, pucks[i].body);
-    //  pucks.splice(i, 1);
-    //  i--;
-    //}
   }
   for (var i = 0; i < pegs.length; i++)
   {

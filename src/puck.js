@@ -13,14 +13,8 @@ function Puck(x, y, r)
   World.add(world, this.body);
 }
 
-Puck.prototype.isOffScreen = function ()
+Puck.prototype.show = function ()
 {
-  var x = this.body.position.x;
-  var y = this.body.position.y;
-  return x < -50 || x > width + 50 || y > height;
-};
-
-Puck.prototype.show = function () {
   fill(this.hue, 255, 255);
   noStroke();
   var pos = this.body.position;
