@@ -46,7 +46,7 @@ function setup()
   rowsVal.position(70, 15);
   rowsVal.size(40);
 
-  puckCount = createInput('');
+  puckCount = createInput(0, 'number');
   puckCount.position(255, 15);
   puckCount.size(40);
 
@@ -121,7 +121,7 @@ function createCatchers()
 // Create a new puck
 function newPuck()
 {
-  var p = new Puck(300, 0, 10);
+  var p = new Puck(width / 2, 0, 10);
   pucks.push(p);
   puckCount.value(pucks.length);
 }
@@ -131,11 +131,6 @@ function draw()
 {
   background(0, 0, 0);
   Engine.update(engine, 1000 / 30);
-
-  //if (frameCount % 20 == 0) 
-  //{
-  //  newPuck();
-  //}
 
   // Control labels
   fill(0, 0, 100);
