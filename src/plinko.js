@@ -78,8 +78,8 @@ function createSketch()
 
   // Create boundaries at the bottom, left, and right (x, y, w, h)
   var bottom = new Boundary(width / 2, height + 50, width, 100);
-  var left   = new Boundary(0, height / 2, 10, height);
-  var right  = new Boundary(width , height / 2, 10, height);
+  var left   = new Boundary(-10, height / 2, 10, height);
+  var right  = new Boundary(width + 10, height / 2, 10, height);
   bounds.push(bottom);
   bounds.push(left);
   bounds.push(right);
