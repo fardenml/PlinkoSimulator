@@ -76,9 +76,13 @@ function createSketch()
   // Create the puck catchers
   createCatchers();
 
-  // Create a bottom boundary object
-  var b = new Boundary(width / 2, height + 50, width, 100);
-  bounds.push(b);
+  // Create boundaries at the bottom, left, and right (x, y, w, h)
+  var bottom = new Boundary(width / 2, height + 50, width, 100);
+  var left   = new Boundary(0, height / 2, 10, height);
+  var right  = new Boundary(width , height / 2, 10, height);
+  bounds.push(bottom);
+  bounds.push(left);
+  bounds.push(right);
 }
 
 // Create the plinko board
@@ -142,12 +146,12 @@ function draw()
   for (var i = 0; i < pucks.length; i++)
   {
     pucks[i].show();
-    if (pucks[i].isOffScreen())
-    {
-      World.remove(world, pucks[i].body);
-      pucks.splice(i, 1);
-      i--;
-    }
+    //if (pucks[i].isOffScreen())
+    //{
+    //  World.remove(world, pucks[i].body);
+    //  pucks.splice(i, 1);
+    //  i--;
+    //}
   }
   for (var i = 0; i < pegs.length; i++)
   {
