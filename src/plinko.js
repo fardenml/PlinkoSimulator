@@ -138,6 +138,18 @@ function draw()
   text("Rows", 76, 10);
   text("Pucks", 262, 10);
 
+  // Bin labels
+  var x = 30;
+  text("0", x, height - 10);
+  text("1", x + 65, height - 10);
+  text("2", x + 135, height - 10);
+  text("3", x + 200, height - 10);
+  text("4", x + 265, height - 10);
+  text("5", x + 335, height - 10);
+  text("6", x + 400, height - 10);
+  text("7", x + 465, height - 10);
+  text("8", x + 530, height - 10);
+
   for (var i = 0; i < pucks.length; i++)
   {
     pucks[i].show();
