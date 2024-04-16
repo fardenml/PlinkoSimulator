@@ -73,8 +73,8 @@ function createSketch()
   // Create the plinko board
   createBoard();
 
-  // Create the puck catchers
-  createCatchers();
+  // Create the puck bins
+  createBins();
 
   // Create boundaries at the bottom, left, and right (x, y, w, h)
   var bottom = new Boundary(width / 2, height + 50, width, 100);
@@ -104,12 +104,12 @@ function createBoard()
   }
 }
 
-// Create the puck catchers
-function createCatchers()
+// Create the puck bins
+function createBins()
 {
-  for (var i = 0; i < 12; i++) 
+  for (var i = 0; i < 9; i++) 
   {
-    var x = i * width / 10;
+    var x = i * width / 9;
     var h = 150;
     var w = 10;
     var y = height - h / 2;
