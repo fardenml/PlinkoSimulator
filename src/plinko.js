@@ -107,7 +107,7 @@ function createBoard()
 // Create the puck bins
 function createBins()
 {
-  for (var i = 0; i < 9; i++) 
+  for (var i = 0; i < 10; i++) 
   {
     var x = i * width / 9;
     var h = 150;
