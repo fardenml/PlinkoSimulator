@@ -13,6 +13,15 @@ var bounds = [];
 var cols;
 var rows;
 var spacing;
+var binCount_0;
+var binCount_1;
+var binCount_2;
+var binCount_3;
+var binCount_4;
+var binCount_5;
+var binCount_6;
+var binCount_7;
+var binCount_8;
 
 // UI controls
 var resetButton
@@ -22,6 +31,7 @@ var columnsVal;
 var rowsSlider;
 var rowsVal;
 var puckCount;
+var resultsButton;
 
 // Main setup function
 function setup() 
@@ -50,6 +60,10 @@ function setup()
   puckCount.position(255, 15);
   puckCount.size(40);
 
+  resultsButton = createButton("Export Results");
+  resultsButton.position(320, 15);
+  resultsButton.mousePressed(exportResults);
+
   // Create the sketch
   createSketch();
 }
@@ -69,6 +83,15 @@ function createSketch()
   rows = rowsVal.value();
   puckCount.value(pucks.length);
   spacing = width / cols;
+  binCount_0 = 0;
+  binCount_1 = 0;
+  binCount_2 = 0;
+  binCount_3 = 0;
+  binCount_4 = 0;
+  binCount_5 = 0;
+  binCount_6 = 0;
+  binCount_7 = 0;
+  binCount_8 = 0;
 
   // Create the plinko board
   createBoard();
@@ -78,8 +101,8 @@ function createSketch()
 
   // Create boundaries at the bottom, left, and right (x, y, w, h)
   var bottom = new Boundary(width / 2, height + 50, width, 100);
-  var left   = new Boundary(-10, height / 2, 10, height);
-  var right  = new Boundary(width + 10, height / 2, 10, height);
+  var left   = new Boundary(-10, height / 2, 10, height + 10);
+  var right  = new Boundary(width + 10, height / 2, 10, height + 10);
   bounds.push(bottom);
   bounds.push(left);
   bounds.push(right);
@@ -126,6 +149,83 @@ function newPuck()
   puckCount.value(pucks.length);
 }
 
+function exportResults()
+{
+  if( pucks.length > 0 )
+  {
+    for (var i = 0; i < pucks.length; i++)
+    {
+      pucks[i].show();
+  
+      binVals(pucks[i].body.position.x, pucks[i].body.position.y);
+    }
+
+    let myTable = new p5.Table();
+
+    for (let i = 0; i < 9; i++)
+    {
+      myTable.addColumn("Bin " + i);
+    }
+
+    myTable.addRow();
+
+    myTable.set(0,0,binCount_0);
+    myTable.set(0,1,binCount_1);
+    myTable.set(0,2,binCount_2);
+    myTable.set(0,3,binCount_3);
+    myTable.set(0,4,binCount_4);
+    myTable.set(0,5,binCount_5);
+    myTable.set(0,6,binCount_6);
+    myTable.set(0,7,binCount_7);
+    myTable.set(0,8,binCount_8);
+
+    save(myTable, 'Plinko-Simulator-Results.csv');
+  }
+}
+
+function binVals(x, y)
+{
+  if( y > 725 )
+  {
+    if( x > 0 && x < 66 )
+    {
+      binCount_0++;
+    }
+    else if( x > 67 && x < 133 )
+    {
+      binCount_1++;
+    }
+    else if( x > 134 && x < 200 )
+    {
+      binCount_2++;
+    }
+    else if( x > 201 && x < 266 )
+    {
+      binCount_3++;
+    }
+    else if( x > 267 && x < 333 )
+    {
+      binCount_4++;
+    }
+    else if( x > 334 && x < 400 )
+    {
+      binCount_5++;
+    }
+    else if( x > 401 && x < 466 )
+    {
+      binCount_6++;
+    }
+    else if( x > 467 && x < 533 )
+    {
+      binCount_7++;
+    }
+    else if( x > 534 && x < 600 )
+    {
+      binCount_8++;
+    }
+  }
+};
+
 // Main draw function
 function draw()
 {
@@ -139,17 +239,16 @@ function draw()
   text("Pucks", 262, 10);
 
   // Bin labels
-  var x = 30;
   var y = height - 140;
-  text("0", x, y);
-  text("1", x + 65, y);
-  text("2", x + 135, y);
-  text("3", x + 200, y);
-  text("4", x + 265, y);
-  text("5", x + 335, y);
-  text("6", x + 400, y);
-  text("7", x + 465, y);
-  text("8", x + 530, y);
+  text("0", 30, y);
+  text("1", 95, y);
+  text("2", 165, y);
+  text("3", 230, y);
+  text("4", 295, y);
+  text("5", 365, y);
+  text("6", 430, y);
+  text("7", 495, y);
+  text("8", 560, y);
 
   for (var i = 0; i < pucks.length; i++)
   {
