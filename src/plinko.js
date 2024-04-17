@@ -13,15 +13,7 @@ var bounds = [];
 var cols;
 var rows;
 var spacing;
-var binCount_0;
-var binCount_1;
-var binCount_2;
-var binCount_3;
-var binCount_4;
-var binCount_5;
-var binCount_6;
-var binCount_7;
-var binCount_8;
+var binCounts;
 
 // UI controls
 var resetButton
@@ -79,19 +71,11 @@ function createSketch()
   pucks = [];
   pegs = [];
   bounds = [];
+  binCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   cols = colsVal.value();
   rows = rowsVal.value();
   puckCount.value(pucks.length);
   spacing = width / cols;
-  binCount_0 = 0;
-  binCount_1 = 0;
-  binCount_2 = 0;
-  binCount_3 = 0;
-  binCount_4 = 0;
-  binCount_5 = 0;
-  binCount_6 = 0;
-  binCount_7 = 0;
-  binCount_8 = 0;
 
   // Create the plinko board
   createBoard();
@@ -149,6 +133,7 @@ function newPuck()
   puckCount.value(pucks.length);
 }
 
+// Export the results
 function exportResults()
 {
   if( pucks.length > 0 )
@@ -169,59 +154,55 @@ function exportResults()
 
     myTable.addRow();
 
-    myTable.set(0,0,binCount_0);
-    myTable.set(0,1,binCount_1);
-    myTable.set(0,2,binCount_2);
-    myTable.set(0,3,binCount_3);
-    myTable.set(0,4,binCount_4);
-    myTable.set(0,5,binCount_5);
-    myTable.set(0,6,binCount_6);
-    myTable.set(0,7,binCount_7);
-    myTable.set(0,8,binCount_8);
-
+    for (let i = 0; i < 9; i++)
+    {
+      myTable.set(0,i,binCounts[i]);
+    }
+    
     save(myTable, 'Plinko-Simulator-Results.csv');
   }
 }
 
+// Determine the number of pucks in each bin
 function binVals(x, y)
 {
   if( y > 725 )
   {
     if( x > 0 && x < 66 )
     {
-      binCount_0++;
+      binCounts[0]++;
     }
     else if( x > 67 && x < 133 )
     {
-      binCount_1++;
+      binCounts[1]++;
     }
     else if( x > 134 && x < 200 )
     {
-      binCount_2++;
+      binCounts[2]++;
     }
     else if( x > 201 && x < 266 )
     {
-      binCount_3++;
+      binCounts[3]++;
     }
     else if( x > 267 && x < 333 )
     {
-      binCount_4++;
+      binCounts[4]++;
     }
     else if( x > 334 && x < 400 )
     {
-      binCount_5++;
+      binCounts[5]++;
     }
     else if( x > 401 && x < 466 )
     {
-      binCount_6++;
+      binCounts[6]++;
     }
     else if( x > 467 && x < 533 )
     {
-      binCount_7++;
+      binCounts[7]++;
     }
     else if( x > 534 && x < 600 )
     {
-      binCount_8++;
+      binCounts[8]++;
     }
   }
 };
