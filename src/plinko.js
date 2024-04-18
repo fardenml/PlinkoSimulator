@@ -145,21 +145,50 @@ function exportResults()
       binVals(pucks[i].body.position.x, pucks[i].body.position.y);
     }
 
-    let myTable = new p5.Table();
+    /* Expected Format:
+    <?xml version="1.0" encoding="utf-8" ?>
+    <PlinkoTestResults>
+    <PlinkoTestRuns>
+      <TestRunResult description="7 x 17" drops="100" prizePayout="$5650">
+        <BoardGeometry>7,17</BoardGeometry>
+        <ResultBins>20,89,267,402,289,92,27</ResultBins>
+        <ResultsImage></ResultsImage>
+      </TestRunResult>
+    </PlinkoTestRuns>
+    </PlinkoTestResults>
+    */
 
+    let endLine = '\n';
+    let tab = '\t';
+    let doubleTab = '\t\t';
+
+    let testResults = '<?xml version="1.0" encoding="utf-8" ?>' + endLine;
+    testResults += '<PlinkoTestResults>' + endLine;
+    testResults += '<PlinkoTestRuns>' + endLine;
+    testResults += tab + '<TestRunResults description=\"' + rows + ' x ' + cols + '\" drops=\"' + pucks.length + '\" prizePayout=\"$5650\">' + endLine;
+    testResults += doubleTab + '<BoardGeometry>' + rows + ',' + cols + '</BoardGeometry>' + endLine;
+    testResults += doubleTab + '<ResultBins>';
+
+    // Loop over all the bins and write the puck count
     for (let i = 0; i < 9; i++)
     {
-      myTable.addColumn("Bin " + i);
+      testResults += binCounts[i];
+      if( i != 8)
+      {
+        testResults += ',';
+      }
     }
 
-    myTable.addRow();
+    testResults += '</ResultBins>' + endLine;
+    testResults += doubleTab + '<ResultsImage></ResultsImage>' + endLine;
+    testResults += tab + '</TestRunResult>' + endLine;
+    testResults += '</PlinkoTestRuns>' + endLine;
+    testResults += '</PlinkoTestResults>';
 
-    for (let i = 0; i < 9; i++)
-    {
-      myTable.set(0,i,binCounts[i]);
-    }
-    
-    save(myTable, 'Plinko-Simulator-Results.csv');
+    // .split() outputs an Array
+    let stringOut = split(testResults, endLine);
+
+    saveStrings(stringOut, 'TestResults', 'xml');
   }
 }
 
