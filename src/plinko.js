@@ -165,8 +165,8 @@ function exportResults()
     let testResults = '<?xml version="1.0" encoding="utf-8" ?>' + endLine;
     testResults += '<PlinkoTestResults>' + endLine;
     testResults += '<PlinkoTestRuns>' + endLine;
-    testResults += tab + '<TestRunResults description=\"' + rows + ' x ' + cols + '\" drops=\"' + pucks.length + '\" prizePayout=\"$5650\">' + endLine;
-    testResults += doubleTab + '<BoardGeometry>' + rows + ',' + cols + '</BoardGeometry>' + endLine;
+    testResults += tab + '<TestRunResults description=\"' + cols + ' x ' + rows + '\" drops=\"' + pucks.length + '\" prizePayout=\"$5650\">' + endLine;
+    testResults += doubleTab + '<BoardGeometry>' + cols + ',' + rows + '</BoardGeometry>' + endLine;
     testResults += doubleTab + '<ResultBins>';
 
     // Loop over all the bins and write the puck count
