@@ -284,6 +284,13 @@ function draw()
     {
       pucks[i].setPhysics(); 
     }
+
+    if (pucks[i].isOffScreen())
+    {
+      World.remove(world, pucks[i].body);
+      pucks.splice(i, 1);
+      i--;
+    }
   }
   for (var i = 0; i < pegs.length; i++)
   {

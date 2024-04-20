@@ -18,7 +18,14 @@ Puck.prototype.setPhysics = function ()
   this.body.restitution = 0;
   this.body.friction = 1;
   this.body.density = 0;
-}
+};
+
+Puck.prototype.isOffScreen = function ()
+{
+  var x = this.body.position.x;
+  var y = this.body.position.y;
+  return x < -50 || x > width + 50 || y > height;
+};
 
 Puck.prototype.show = function ()
 {
