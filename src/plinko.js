@@ -17,10 +17,8 @@ var binCounts;
 // UI controls
 var resetButton
 var dropButton
-var columnsSlider;
-var columnsVal;
-var rowsSlider;
-var rowsVal;
+var colsVal;
+var aspectRatio;
 var puckCount;
 var resultsButton;
 var dropPucks;
@@ -33,7 +31,7 @@ function setup()
 
   // Create buttons and inputs
   resetButton = createButton("Reset");
-  resetButton.position(130, 15);
+  resetButton.position(134, 15);
   resetButton.mousePressed(createSketch);
 
   dropButton = createButton("Start");
@@ -42,11 +40,11 @@ function setup()
 
   colsVal = createInput(7, 'number');
   colsVal.position(10, 15);
-  colsVal.size(40);
+  colsVal.size(30);
 
-  rowsVal = createInput(17, 'number');
-  rowsVal.position(70, 15);
-  rowsVal.size(40);
+  aspectRatio = createInput(2.5, 'number');
+  aspectRatio.position(55, 15);
+  aspectRatio.size(60);
 
   puckCount = createInput(1, 'number');
   puckCount.position(193, 15);
@@ -73,7 +71,7 @@ function createSketch()
   bounds = [];
   binCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   cols = colsVal.value();
-  rows = rowsVal.value();
+  rows = (colsVal.value() * aspectRatio.value());
   puckCount.value(1);
   dropPucks = false;
 
@@ -121,7 +119,7 @@ function createBins()
   for (var i = 0; i < 10; i++) 
   {
     var x = i * width / 9;
-    var h = 150;
+    var h = 110;
     var w = 10;
     var y = height - h / 2;
     var b = new Boundary(x, y, w, h);
@@ -206,7 +204,7 @@ function exportResults()
 // Determine the number of pucks in each bin
 function binVals(x, y)
 {
-  if( y > 900 )
+  if( y > 940 )
   {
     if( x > 0 && x < 66 )
     {
@@ -262,13 +260,13 @@ function draw()
   }
 
   // Limit the number of rows, cols, and pucks
-  if(rowsVal.value() > 17)
+  if(aspectRatio.value() > 2.5)
   {
-    rowsVal.value(17);
+    aspectRatio.value(2.5);
   }
-  else if(rowsVal.value() < 5)
+  else if(aspectRatio.value() < 1)
   {
-    rowsVal.value(5);
+    aspectRatio.value(1);
   }
   else if(colsVal.value() > 7)
   {
@@ -289,12 +287,12 @@ function draw()
 
   // Control labels
   fill(0, 0, 100);
-  text("Columns", 10, 10);
-  text("Rows", 76, 10);
+  text("Width", 12, 10);
+  text("Aspect Ratio", 55, 10);
   text("Pucks to Drop", 195, 10);
 
   // Bin labels
-  var y = height - 140;
+  var y = height - 100;
   text("0", 30, y);
   text("1", 95, y);
   text("2", 165, y);
