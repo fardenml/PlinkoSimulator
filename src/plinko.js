@@ -188,7 +188,11 @@ function exportResults()
     // .split() outputs an Array
     let stringOut = split(testResults, endLine);
 
+    // Save the results string to an xml file
     saveStrings(stringOut, 'TestResults', 'xml');
+
+    // Save the current canvas as a png for the report
+    saveCanvas('ResultsImage', 'png');
   }
 }
 
