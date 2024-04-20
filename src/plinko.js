@@ -261,22 +261,26 @@ function draw()
     }
   }
 
-  // Limit the number of rows and cols
+  // Limit the number of rows, cols, and pucks
   if(rowsVal.value() > 17)
   {
     rowsVal.value(17);
   }
-  else if( rowsVal.value() < 5)
+  else if(rowsVal.value() < 5)
   {
     rowsVal.value(5);
   }
-  else if(colsVal.value() > 10)
+  else if(colsVal.value() > 7)
   {
-    colsVal.value(10);
+    colsVal.value(7);
   }
-  else if( colsVal.value() < 5)
+  else if(colsVal.value() < 5)
   {
     colsVal.value(5);
+  }
+  else if(puckCount.value() > 100)
+  {
+    puckCount.value(100);
   }
   else
   {
