@@ -86,7 +86,7 @@ function createSketch()
   createBins();
 
   // Create boundaries at the bottom, left, and right (x, y, w, h)
-  var bottom = new Boundary(width / 2, height + 50, width, 100);
+  var bottom = new Boundary(width / 2, height + 50, width + 10, 100);
   var left   = new Boundary(-9, height / 2, 10, height + 10);
   var right  = new Boundary(width + 9, height / 2, 10, height + 10);
   bounds.push(bottom);
