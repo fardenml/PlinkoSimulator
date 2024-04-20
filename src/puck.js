@@ -4,7 +4,7 @@ function Puck(x, y, r)
   var options = {
     restitution: 0.5,
     friction: 0,
-    density: 1,
+    density: 0.5,
   };
   x += random(-1, 1);
   this.body = Bodies.circle(x, y, r, options);
