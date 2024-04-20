@@ -13,6 +13,13 @@ function Puck(x, y, r)
   World.add(world, this.body);
 }
 
+Puck.prototype.setPhysics = function ()
+{
+  this.body.restitution = 0;
+  this.body.friction = 1;
+  this.body.density = 0;
+}
+
 Puck.prototype.show = function ()
 {
   fill(this.hue, 255, 255);

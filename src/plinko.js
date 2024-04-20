@@ -87,8 +87,8 @@ function createSketch()
 
   // Create boundaries at the bottom, left, and right (x, y, w, h)
   var bottom = new Boundary(width / 2, height + 50, width + 10, 100);
-  var left   = new Boundary(-9, height / 2, 10, height + 10);
-  var right  = new Boundary(width + 9, height / 2, 10, height + 10);
+  var left   = new Boundary(-49, height / 2, 50, height + 10);
+  var right  = new Boundary(width + 49, height / 2, 50, height + 10);
   bounds.push(bottom);
   bounds.push(left);
   bounds.push(right);
@@ -143,12 +143,10 @@ function dropThePucks()
 // Export the results
 function exportResults()
 {
-  if( pucks.length > 0 )
+  if( pucks.length == puckCount.value() )
   {
     for (var i = 0; i < pucks.length; i++)
     {
-      pucks[i].show();
-  
       binVals(pucks[i].body.position.x, pucks[i].body.position.y);
     }
 
@@ -282,6 +280,10 @@ function draw()
   for (var i = 0; i < pucks.length; i++)
   {
     pucks[i].show();
+    if (pucks[i].body.position.y > 650)
+    {
+      pucks[i].setPhysics(); 
+    }
   }
   for (var i = 0; i < pegs.length; i++)
   {
