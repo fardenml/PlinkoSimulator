@@ -24,6 +24,7 @@ var rowsSlider;
 var rowsVal;
 var puckCount;
 var resultsButton;
+var dropPucks;
 
 // Main setup function
 function setup() 
@@ -36,9 +37,9 @@ function setup()
   resetButton.position(130, 15);
   resetButton.mousePressed(createSketch);
 
-  dropButton = createButton("Drop");
-  dropButton.position(195, 15);
-  dropButton.mousePressed(newPuck);
+  dropButton = createButton("Start");
+  dropButton.position(283, 15);
+  dropButton.mousePressed(dropThePucks);
 
   colsVal = createInput(10, 'number');
   colsVal.position(10, 15);
@@ -48,12 +49,12 @@ function setup()
   rowsVal.position(70, 15);
   rowsVal.size(40);
 
-  puckCount = createInput(0, 'number');
-  puckCount.position(255, 15);
-  puckCount.size(40);
+  puckCount = createInput(1, 'number');
+  puckCount.position(193, 15);
+  puckCount.size(70);
 
   resultsButton = createButton("Export Results");
-  resultsButton.position(320, 15);
+  resultsButton.position(340, 15);
   resultsButton.mousePressed(exportResults);
 
   // Create the sketch
@@ -74,8 +75,9 @@ function createSketch()
   binCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   cols = colsVal.value();
   rows = rowsVal.value();
-  puckCount.value(pucks.length);
+  puckCount.value(1);
   spacing = width / cols;
+  dropPucks = false;
 
   // Create the plinko board
   createBoard();
@@ -130,7 +132,12 @@ function newPuck()
 {
   var p = new Puck(width / 2, 0, 10);
   pucks.push(p);
-  puckCount.value(pucks.length);
+}
+
+// Drop the pucks
+function dropThePucks()
+{
+  dropPucks = true;
 }
 
 // Export the results
@@ -149,10 +156,10 @@ function exportResults()
     <?xml version="1.0" encoding="utf-8" ?>
     <PlinkoTestResults>
     <PlinkoTestRuns>
-      <TestRunResult description="7 x 17" drops="100" prizePayout="$5650">
+      <TestRunResult description="7 x 17" drops="100">
         <BoardGeometry>7,17</BoardGeometry>
         <ResultBins>20,89,267,402,289,92,27</ResultBins>
-        <ResultsImage></ResultsImage>
+        <ResultsImage>ResultsImage.png</ResultsImage>
       </TestRunResult>
     </PlinkoTestRuns>
     </PlinkoTestResults>
@@ -180,7 +187,7 @@ function exportResults()
     }
 
     testResults += '</ResultBins>' + endLine;
-    testResults += doubleTab + '<ResultsImage></ResultsImage>' + endLine;
+    testResults += doubleTab + '<ResultsImage>ResultsImage.png</ResultsImage>' + endLine;
     testResults += tab + '</TestRunResult>' + endLine;
     testResults += '</PlinkoTestRuns>' + endLine;
     testResults += '</PlinkoTestResults>';
@@ -246,11 +253,19 @@ function draw()
   background(0, 0, 0);
   Engine.update(engine, 1000 / 30);
 
+  if (dropPucks && pucks.length < puckCount.value())
+  {
+    if (frameCount % 20 == 0) 
+    {
+      newPuck();
+    }
+  }
+
   // Control labels
   fill(0, 0, 100);
   text("Columns", 10, 10);
   text("Rows", 76, 10);
-  text("Pucks", 262, 10);
+  text("Pucks to Drop", 195, 10);
 
   // Bin labels
   var y = height - 140;
