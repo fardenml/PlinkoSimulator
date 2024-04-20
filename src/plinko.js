@@ -12,7 +12,6 @@ var pegs = [];
 var bounds = [];
 var cols;
 var rows;
-var spacing;
 var binCounts;
 
 // UI controls
@@ -29,7 +28,7 @@ var dropPucks;
 // Main setup function
 function setup() 
 {
-  createCanvas(600, 800);
+  createCanvas(600, 1050);
   colorMode(HSB);
 
   // Create buttons and inputs
@@ -41,11 +40,11 @@ function setup()
   dropButton.position(283, 15);
   dropButton.mousePressed(dropThePucks);
 
-  colsVal = createInput(10, 'number');
+  colsVal = createInput(7, 'number');
   colsVal.position(10, 15);
   colsVal.size(40);
 
-  rowsVal = createInput(10, 'number');
+  rowsVal = createInput(17, 'number');
   rowsVal.position(70, 15);
   rowsVal.size(40);
 
@@ -76,7 +75,6 @@ function createSketch()
   cols = colsVal.value();
   rows = rowsVal.value();
   puckCount.value(1);
-  spacing = width / cols;
   dropPucks = false;
 
   // Create the plinko board
@@ -86,9 +84,9 @@ function createSketch()
   createBins();
 
   // Create boundaries at the bottom, left, and right (x, y, w, h)
-  var bottom = new Boundary(width / 2, height + 48, width + 10, 100);
-  var left   = new Boundary(-50, height / 2, 100, height + 10);
-  var right  = new Boundary(width + 50, height / 2, 100, height + 10);
+  var bottom = new Boundary(width / 2, height + 49, width + 10, 100);
+  var left   = new Boundary(-51, height / 2, 100, height + 10);
+  var right  = new Boundary(width + 51, height / 2, 100, height + 10);
   bounds.push(bottom);
   bounds.push(left);
   bounds.push(right);
@@ -97,19 +95,21 @@ function createSketch()
 // Create the plinko board
 function createBoard()
 {
+  var spacing = width / cols;
+
   // Create rows
   for (var j = 0; j < rows; j++)
   {
     // Create columns
-    for (var i = 0; i < cols + 1; i++)
+    for (var i = 0; i <= cols; i++)
     {
       var x = i * spacing;
       if (j % 2 == 0)
       {
         x += spacing / 2;
       }
-      var y = spacing + j * spacing;
-      var p = new Board(x, y, 13.5);
+      var y = 60 + j * 50;
+      var p = new Board(x, y, 13.1);
       pegs.push(p);
     }
   }
@@ -132,7 +132,7 @@ function createBins()
 // Create a new puck
 function newPuck()
 {
-  var p = new Puck(width / 2, 0, 10);
+  var p = new Puck(width / 2, 0, 9.1);
   pucks.push(p);
 }
 
@@ -206,7 +206,7 @@ function exportResults()
 // Determine the number of pucks in each bin
 function binVals(x, y)
 {
-  if( y > 650 )
+  if( y > 900 )
   {
     if( x > 0 && x < 66 )
     {
@@ -255,10 +255,32 @@ function draw()
 
   if (dropPucks && pucks.length < puckCount.value())
   {
-    if (frameCount % 20 == 0) 
+    if (frameCount % 30 == 0) 
     {
       newPuck();
     }
+  }
+
+  // Limit the number of rows and cols
+  if(rowsVal.value() > 17)
+  {
+    rowsVal.value(17);
+  }
+  else if( rowsVal.value() < 5)
+  {
+    rowsVal.value(5);
+  }
+  else if(colsVal.value() > 10)
+  {
+    colsVal.value(10);
+  }
+  else if( colsVal.value() < 5)
+  {
+    colsVal.value(5);
+  }
+  else
+  {
+    // do nothing
   }
 
   // Control labels
