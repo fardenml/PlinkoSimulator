@@ -244,20 +244,25 @@ function runTestSet()
 
   for (var i = 0; i < testWidths.length; i++)
   {
-    // Set the width and aspect ratio
+    // Set the width
     colsVal.value(testWidths[i]);
-    aspectRatio.value(testRatios[i]);
+
+    // Loop through the aspect ratios
+    for (var j = 0; j < testRatios.length; j++)
+    {
+      aspectRatio.value(testRatios[j]);
     
-    // Update the sketch
-    createSketch();
-
-    // Set the number of drops
-    puckCount.value(testDrops);
-
-    // Start!
-    dropThePucks();
-
-    storeTestResults();
+      // Update the sketch
+      createSketch();
+  
+      // Set the number of drops
+      puckCount.value(testDrops);
+  
+      // Start!
+      dropThePucks();
+  
+      storeTestResults();
+    }
   }
 
   exportResults();
