@@ -23,12 +23,14 @@ var puckCount;
 var resultsButton;
 var dropPucks;
 var testSetButton;
+
+// Test Set variables
 let testSet;
-let drops;
-let width;
-let widths = [];
-let ratio;
-let ratios = [];
+let testDrops;
+let testWidth;
+let testWidths = [];
+let testRatio;
+let testRatios = [];
 
 // Main setup function
 function setup() 
@@ -61,7 +63,7 @@ function setup()
   resultsButton.position(340, 15);
   resultsButton.mousePressed(exportResults);
 
-  testSetButton = createButton("Load Test Set");
+  testSetButton = createButton("Run Test Set");
   testSetButton.position(455, 15);
   testSetButton.mousePressed(importTestSet);
 
@@ -221,16 +223,16 @@ function runTestSet()
 {
   let test = testSet.getChildren(); 
   
-  width = test[0].getContent();
-  ratio = test[1].getContent();
-  drops = test[2].getContent();
+  testWidth = test[0].getContent();
+  testRatio = test[1].getContent();
+  testDrops = test[2].getContent();
 
-  widths = split(width, ',');
-  ratios = split(ratio, ',');
+  testWidths = split(width, ',');
+  testRatios = split(ratio, ',');
 
-  colsVal.value(widths[0]);
-  aspectRatio.value(ratios[0]);
-  puckCount.value(drops);
+  colsVal.value(testWidths[0]);
+  aspectRatio.value(testRatios[0]);
+  puckCount.value(testDrops);
 }
 
 // Determine the number of pucks in each bin
