@@ -24,6 +24,7 @@ var resultsButton;
 var dropPucks;
 var testSetButton;
 let testSet;
+let drops;
 
 // Main setup function
 function setup() 
@@ -80,6 +81,7 @@ function createSketch()
   rows = (colsVal.value() * aspectRatio.value());
   puckCount.value(1);
   dropPucks = false;
+  drops = 2;
 
   // Create the plinko board
   createBoard();
@@ -216,8 +218,7 @@ function runTestSet()
 {
   let test = testSet.getChildren(); 
     
-  let drops = test[2].getContent();
-  text(drops, 455, 10); 
+  drops = test[2].getNum();
   puckCount.value(drops);
 }
 
@@ -310,6 +311,7 @@ function draw()
   text("Width", 12, 10);
   text("Aspect Ratio", 55, 10);
   text("Pucks to Drop", 195, 10);
+  text(drops, 455, 10); 
 
   // Bin labels
   var y = height - 100;
