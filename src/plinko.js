@@ -31,8 +31,8 @@ var testSetButton;
 let testResults = '';
 let resultsString = '';
 let endLine = '\n';
-let tab = '\t';
-let doubleTab = '\t\t';
+let tab = '   ';
+let doubleTab = '      ';
 
 // Main setup function
 function setup() 

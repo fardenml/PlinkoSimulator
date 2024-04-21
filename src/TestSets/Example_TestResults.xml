@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <PlinkoTestResults>
 <PlinkoTestRuns>
-	<TestRunResults description="7 x 17" drops="100">
-		<BoardGeometry>7,17</BoardGeometry>
-		<ResultBins>5,7,13,14,18,13,14,10,6</ResultBins>
-		<ResultsImage>ResultsImage.png</ResultsImage>
-	</TestRunResult>
+   <TestRunResults description="7 x 18" drops="100">
+      <BoardGeometry>7,18</BoardGeometry>
+      <ResultBins>13,6,4,14,24,21,3,4,11</ResultBins>
+      <ResultsImage>ResultsImage.png</ResultsImage>
+   </TestRunResult>
 </PlinkoTestRuns>
 </PlinkoTestResults>
