@@ -273,7 +273,7 @@ function runTestSet()
 // Determine the number of pucks in each bin
 function binVals(x, y)
 {
-  if( y > 940 )
+  if( y > (height - 110) )
   {
     if( x > 0 && x < 66 )
     {
