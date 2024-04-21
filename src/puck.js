@@ -6,7 +6,7 @@ function Puck(x, y, r)
     friction: 0,
     density: 0.5,
   };
-  x += random(-1, 1);
+  x += random(-20, 20);
   this.body = Bodies.circle(x, y, r, options);
   this.body.label = "puck";
   this.r = r;

@@ -13,6 +13,8 @@ var bounds = [];
 var cols;
 var rows;
 var binCounts;
+var pegSize = 14.1;
+var puckSize = 9.1;
 
 // UI controls
 var resetButton
@@ -120,7 +122,7 @@ function createBoard()
         x += spacing / 2;
       }
       var y = 60 + j * 50;
-      var p = new Board(x, y, 13.1);
+      var p = new Board(x, y, pegSize);
       pegs.push(p);
     }
   }
@@ -143,7 +145,7 @@ function createBins()
 // Create a new puck
 function newPuck()
 {
-  var p = new Puck(width / 2, 0, 9.1);
+  var p = new Puck(width / 2, 0, puckSize);
   pucks.push(p);
 }
 
