@@ -216,8 +216,9 @@ function runTestSet()
 {
   let test = testSet.getChildren(); 
     
-  drops = test[0].getContent();
+  let drops = test[2].getContent();
   text(drops, 455, 10); 
+  puckCount.value(drops);
 }
 
 // Determine the number of pucks in each bin
