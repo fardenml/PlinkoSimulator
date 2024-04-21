@@ -33,6 +33,14 @@ let testWidth;
 let testWidths = [];
 let testRatio;
 let testRatios = [];
+let runningTestSet = false;
+
+// Test Results variables
+let testResults = '';
+let resultsString = '';
+let endLine = '\n';
+let tab = '\t';
+let doubleTab = '\t\t';
 
 // Main setup function
 function setup() 
@@ -85,10 +93,12 @@ function createSketch()
   pegs = [];
   bounds = [];
   binCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  cols = colsVal.value();
-  rows = (colsVal.value() * aspectRatio.value());
+  cols = round(colsVal.value());
+  rows = round(colsVal.value() * aspectRatio.value());
   puckCount.value(1);
   dropPucks = false;
+  testResults = '';
+  resultsString = '';
 
   // Create the plinko board
   createBoard();
@@ -155,53 +165,51 @@ function dropThePucks()
   dropPucks = true;
 }
 
+// Store the test results
+function storeTestResults()
+{
+  // Gather all the puck counts
+  for (var i = 0; i < pucks.length; i++)
+  {
+    binVals(pucks[i].body.position.x, pucks[i].body.position.y);
+  }
+
+  // Build the results string
+  resultsString += tab + '<TestRunResults description=\"' + cols + ' x ' + rows + '\" drops=\"' + pucks.length + '\">' + endLine;
+  resultsString += doubleTab + '<BoardGeometry>' + cols + ',' + rows + '</BoardGeometry>' + endLine;
+  resultsString += doubleTab + '<ResultBins>';
+
+  // Write all the puck counts
+  for (let i = 0; i < 9; i++)
+  {
+    resultsString += binCounts[i];
+    if( i != 8)
+    {
+      resultsString += ',';
+    }
+  }
+
+  resultsString += '</ResultBins>' + endLine;
+  resultsString += doubleTab + '<ResultsImage>ResultsImage.png</ResultsImage>' + endLine;
+  resultsString += tab + '</TestRunResult>' + endLine;
+}
+
 // Export the results
 function exportResults()
 {
   if( pucks.length == puckCount.value() )
   {
-    for (var i = 0; i < pucks.length; i++)
+    // Store the results from the current manual run
+    if(runningTestSet == false)
     {
-      binVals(pucks[i].body.position.x, pucks[i].body.position.y);
+      storeTestResults();
     }
 
-    /* Expected Format:
-    <?xml version="1.0" encoding="utf-8" ?>
-    <PlinkoTestResults>
-    <PlinkoTestRuns>
-      <TestRunResult description="7 x 17" drops="100">
-        <BoardGeometry>7,17</BoardGeometry>
-        <ResultBins>20,89,267,402,289,92,27</ResultBins>
-        <ResultsImage>ResultsImage.png</ResultsImage>
-      </TestRunResult>
-    </PlinkoTestRuns>
-    </PlinkoTestResults>
-    */
-
-    let endLine = '\n';
-    let tab = '\t';
-    let doubleTab = '\t\t';
-
-    let testResults = '<?xml version="1.0" encoding="utf-8" ?>' + endLine;
+    // Build the results string
+    testResults = '<?xml version="1.0" encoding="utf-8" ?>' + endLine;
     testResults += '<PlinkoTestResults>' + endLine;
     testResults += '<PlinkoTestRuns>' + endLine;
-    testResults += tab + '<TestRunResults description=\"' + cols + ' x ' + rows + '\" drops=\"' + pucks.length + '\">' + endLine;
-    testResults += doubleTab + '<BoardGeometry>' + cols + ',' + rows + '</BoardGeometry>' + endLine;
-    testResults += doubleTab + '<ResultBins>';
-
-    // Loop over all the bins and write the puck count
-    for (let i = 0; i < 9; i++)
-    {
-      testResults += binCounts[i];
-      if( i != 8)
-      {
-        testResults += ',';
-      }
-    }
-
-    testResults += '</ResultBins>' + endLine;
-    testResults += doubleTab + '<ResultsImage>ResultsImage.png</ResultsImage>' + endLine;
-    testResults += tab + '</TestRunResult>' + endLine;
+    testResults += resultsString;
     testResults += '</PlinkoTestRuns>' + endLine;
     testResults += '</PlinkoTestResults>';
 
@@ -223,6 +231,8 @@ function importTestSet()
 
 function runTestSet()
 {
+  runningTestSet = true;
+
   let test = testSet.getChildren(); 
   
   testWidth = test[0].getContent();
@@ -232,9 +242,27 @@ function runTestSet()
   testWidths = split(testWidth, ',');
   testRatios = split(testRatio, ',');
 
-  colsVal.value(testWidths[0]);
-  aspectRatio.value(testRatios[0]);
-  puckCount.value(testDrops);
+  for (var i = 0; i < testWidths.length; i++)
+  {
+    // Set the width and aspect ratio
+    colsVal.value(testWidths[i]);
+    aspectRatio.value(testRatios[i]);
+    
+    // Update the sketch
+    createSketch();
+
+    // Set the number of drops
+    puckCount.value(testDrops);
+
+    // Start!
+    dropThePucks();
+
+    storeTestResults();
+  }
+
+  exportResults();
+
+  runningTestSet = false;
 }
 
 // Determine the number of pucks in each bin
@@ -287,7 +315,7 @@ function draw()
   background(0, 0, 0);
   Engine.update(engine, 1000 / 30);
 
-  if (dropPucks && pucks.length < puckCount.value())
+  if(dropPucks && pucks.length < puckCount.value())
   {
     if (frameCount % 30 == 0) 
     {
