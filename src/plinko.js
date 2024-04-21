@@ -209,12 +209,15 @@ function exportResults()
 
 function importTestSet()
 {
-  testSet = loadStrings('src/TestSets/PlinkoTestSet.xml', runTestSet);
+  testSet = loadXML('src/TestSets/PlinkoTestSet.xml', runTestSet);
 }
 
 function runTestSet()
 {
-
+  let test = testSet.getChildren(); 
+    
+  drops = test[0].getContent();
+  text(drops, 455, 10); 
 }
 
 // Determine the number of pucks in each bin
