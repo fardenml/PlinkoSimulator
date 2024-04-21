@@ -22,6 +22,8 @@ var aspectRatio;
 var puckCount;
 var resultsButton;
 var dropPucks;
+var testSetButton;
+let testSet;
 
 // Main setup function
 function setup() 
@@ -53,6 +55,10 @@ function setup()
   resultsButton = createButton("Export Results");
   resultsButton.position(340, 15);
   resultsButton.mousePressed(exportResults);
+
+  testSetButton = createButton("Load Test Set");
+  testSetButton.position(455, 15);
+  testSetButton.mousePressed(importTestSet);
 
   // Create the sketch
   createSketch();
@@ -199,6 +205,16 @@ function exportResults()
     // Save the current canvas as a png for the report
     saveCanvas('ResultsImage', 'png');
   }
+}
+
+function importTestSet()
+{
+  testSet = loadStrings('src/TestSets/PlinkoTestSet.xml', runTestSet);
+}
+
+function runTestSet()
+{
+
 }
 
 // Determine the number of pucks in each bin
