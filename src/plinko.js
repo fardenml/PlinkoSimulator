@@ -179,7 +179,7 @@ function storeTestResults()
   for (let i = 0; i < 9; i++)
   {
     resultsString += binCounts[i];
-    if( i != 8)
+    if(i != 8)
     {
       resultsString += ',';
     }
@@ -238,15 +238,19 @@ function runTestSet()
   let testWidths = split(testWidth, ',');
   let testRatios = split(testRatio, ',');
 
+  let widthIndex = 0;
+  let ratioIndex = 0;
+
   for (var i = 0; i < testWidths.length; i++)
-  {
+  { 
     // Set the width
-    colsVal.value(testWidths[i]);
+    colsVal.value(testWidths[widthIndex]);
 
     // Loop through the aspect ratios
     for (var j = 0; j < testRatios.length; j++)
     {
-      aspectRatio.value(testRatios[j]);
+      // Set the aspect ratio
+      aspectRatio.value(testRatios[ratioIndex]);
     
       // Update the sketch
       createSketch();
@@ -258,7 +262,11 @@ function runTestSet()
       dropThePucks();
   
       storeTestResults();
+
+      ratioIndex++;
     }
+
+    widthIndex++;
   }
 
   exportResults();
