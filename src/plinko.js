@@ -15,6 +15,7 @@ var rows;
 var binCounts;
 var pegSize = 14.1;
 var puckSize = 9.1;
+let runningTestSet = false;
 
 // UI controls
 var resetButton
@@ -25,15 +26,6 @@ var puckCount;
 var resultsButton;
 var dropPucks;
 var testSetButton;
-
-// Test Set variables
-let testSet;
-let testDrops;
-let testWidth;
-let testWidths = [];
-let testRatio;
-let testRatios = [];
-let runningTestSet = false;
 
 // Test Results variables
 let testResults = '';
@@ -97,8 +89,12 @@ function createSketch()
   rows = round(colsVal.value() * aspectRatio.value());
   puckCount.value(1);
   dropPucks = false;
-  testResults = '';
-  resultsString = '';
+
+  if(runningTestSet == false)
+  {
+    testResults = '';
+    resultsString = '';
+  }
 
   // Create the plinko board
   createBoard();
@@ -233,14 +229,14 @@ function runTestSet()
 {
   runningTestSet = true;
 
-  let test = testSet.getChildren(); 
+  let set = testSet.getChildren(); 
   
-  testWidth = test[0].getContent();
-  testRatio = test[1].getContent();
-  testDrops = test[2].getContent();
+  let testWidth = set[0].getContent();
+  let testRatio = set[1].getContent();
+  let testDrops = set[2].getContent();
 
-  testWidths = split(testWidth, ',');
-  testRatios = split(testRatio, ',');
+  let testWidths = split(testWidth, ',');
+  let testRatios = split(testRatio, ',');
 
   for (var i = 0; i < testWidths.length; i++)
   {
