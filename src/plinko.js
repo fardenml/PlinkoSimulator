@@ -227,8 +227,8 @@ function runTestSet()
   testRatio = test[1].getContent();
   testDrops = test[2].getContent();
 
-  testWidths = split(width, ',');
-  testRatios = split(ratio, ',');
+  testWidths = split(testWidth, ',');
+  testRatios = split(testRatio, ',');
 
   colsVal.value(testWidths[0]);
   aspectRatio.value(testRatios[0]);
