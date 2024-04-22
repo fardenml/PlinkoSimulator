@@ -346,6 +346,8 @@ function draw()
 
         storeTestResults();
       
+        saveCanvas('ResultsImage_' + widthIndex, 'png');
+
         if(ratioIndex < testRatios.length)
         {
           ratioIndex++;
@@ -361,8 +363,6 @@ function draw()
 
     if(widthIndex == testWidths.length)
     {
-      saveCanvas('ResultsImage_' + widthIndex, 'png');
-
       exportResults();
       runningTestSet = false;
     }
