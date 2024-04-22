@@ -333,9 +333,9 @@ function draw()
     }
   }
 
-  if(pucks.length == puckCount.value)
+  if(pucks.length == puckCount.value())
   {
-    dropPucks == false;
+    dropPucks = false;
   }
 
   if(runningTestSet)
@@ -358,7 +358,7 @@ function draw()
       dropThePucks();
     }
 
-    if(pucks.length == puckCount.value)
+    if(pucks.length == puckCount.value())
     {
       storeTestResults();
 
@@ -379,7 +379,7 @@ function draw()
       exportResults();
       runningTestSet = false;
       widthIndex = 0;
-      ratioindex = 0;
+      ratioIndex = 0;
     }
   }
 
