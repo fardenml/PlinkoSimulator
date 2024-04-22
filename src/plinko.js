@@ -333,17 +333,19 @@ function draw()
     }
   }
 
-  if(pucks.length == puckCount.value() && pucks[puckCount.value()].body.position.y > height - 100)
-  {
-    dropPucks = false;
-  }
-
   if(runningTestSet)
   {
     if(pucks.length == puckCount.value())
     {
-      storeTestResults();
+      if(pucks[pucks.length - 1].body.position.y > height - 100)
+      {
+        dropPucks = false;
 
+        storeTestResults();
+
+        pucks = [];
+      }
+      
       if(ratioIndex < testRatios.length)
       {
         ratioIndex++;
