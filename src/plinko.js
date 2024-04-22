@@ -333,7 +333,7 @@ function draw()
     }
   }
 
-  if(pucks.length == puckCount.value())
+  if(pucks.length == puckCount.value() && pucks[puckCount.value()].body.position.y > height - 100)
   {
     dropPucks = false;
   }
@@ -350,13 +350,13 @@ function draw()
       }
     }
 
-    if(ratioIndex >= (testRatios.length -1))
+    if(ratioIndex == testRatios.length)
     {
       ratioIndex = 0;
       widthIndex++;
     }
 
-    if(widthIndex >= (testWidths.length - 1))
+    if(widthIndex == testWidths.length)
     {
       exportResults();
       runningTestSet = false;
