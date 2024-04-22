@@ -226,7 +226,7 @@ function exportResults()
   // Save the results string to an xml file
   saveStrings(stringOut, 'TestResults', 'xml');
 
-  if(runninigTtestSet == false)
+  if(runningTestSet == false)
   {
     // Save the current canvas as a png for the report
     saveCanvas('ResultsImage', 'png');
