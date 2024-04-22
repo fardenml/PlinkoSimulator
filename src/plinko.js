@@ -344,11 +344,11 @@ function draw()
         storeTestResults();
 
         pucks = [];
-      }
-
-      if(ratioIndex < testRatios.length)
-      {
-        ratioIndex++;
+      
+        if(ratioIndex < testRatios.length)
+        {
+          ratioIndex++;
+        }
       }
     }
 
@@ -364,7 +364,7 @@ function draw()
       runningTestSet = false;
     }
 
-    if(dropPucks == false)
+    if(dropPucks == false && runningTestSet)
     {
       // Set the width
       setWidth(testWidths[widthIndex]);
