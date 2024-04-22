@@ -13,7 +13,7 @@ var bounds = [];
 var cols;
 var rows;
 var binCounts;
-var pegSize = 14.2;
+var pegSize = 14.3;
 var puckSize = 9.2;
 
 // UI controls
