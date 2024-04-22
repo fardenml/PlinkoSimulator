@@ -340,24 +340,6 @@ function draw()
 
   if(runningTestSet)
   {
-    if(dropPucks == false)
-    {
-      // Set the width
-      setWidth(testWidths[widthIndex]);
-
-      // Set the aspect ratio
-      setAspectRatio(testRatios[ratioIndex]);
-
-      // Update the sketch
-      createSketch();
-  
-      // Set the number of drops
-      puckCount.value(testDrops);
-  
-      // Start!
-      dropThePucks();
-    }
-
     if(pucks.length == puckCount.value())
     {
       storeTestResults();
@@ -380,6 +362,24 @@ function draw()
       runningTestSet = false;
       widthIndex = 0;
       ratioIndex = 0;
+    }
+
+    if(dropPucks == false)
+    {
+      // Set the width
+      setWidth(testWidths[widthIndex]);
+
+      // Set the aspect ratio
+      setAspectRatio(testRatios[ratioIndex]);
+
+      // Update the sketch
+      createSketch();
+  
+      // Set the number of drops
+      puckCount.value(testDrops);
+  
+      // Start!
+      dropThePucks();
     }
   }
 
