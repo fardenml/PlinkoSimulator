@@ -184,7 +184,7 @@ function storeTestResults()
   }
 
   // Build the results string
-  resultsString += tab + '<TestRunResults description=\"' + cols + ' x ' + rows + '\" drops=\"' + pucks.length + '\">' + endLine;
+  resultsString += tab + '<TestRunResult description=\"' + cols + ' x ' + rows + '\" drops=\"' + pucks.length + '\">' + endLine;
   resultsString += doubleTab + '<BoardGeometry>' + cols + ',' + rows + '</BoardGeometry>' + endLine;
   resultsString += doubleTab + '<ResultBins>';
 
