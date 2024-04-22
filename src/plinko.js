@@ -345,7 +345,7 @@ function draw()
 
         pucks = [];
       }
-      
+
       if(ratioIndex < testRatios.length)
       {
         ratioIndex++;
@@ -362,8 +362,6 @@ function draw()
     {
       exportResults();
       runningTestSet = false;
-      widthIndex = 0;
-      ratioIndex = 0;
     }
 
     if(dropPucks == false)
