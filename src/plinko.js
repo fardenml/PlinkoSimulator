@@ -17,8 +17,8 @@ var pegSize = 14.1;
 var puckSize = 9.1;
 
 // UI controls
-var resetButton
-var dropButton
+var resetButton;
+var startButton;
 var colsVal;
 var aspectRatio;
 var puckCount;
@@ -51,12 +51,16 @@ function setup()
 
   // Create buttons and inputs
   resetButton = createButton("Reset");
-  resetButton.position(134, 15);
+  resetButton.position(132, 15);
   resetButton.mousePressed(createSketch);
 
-  dropButton = createButton("Start");
-  dropButton.position(283, 15);
-  dropButton.mousePressed(dropThePucks);
+  startButton = createButton("Start");
+  startButton.position(280, 15);
+  startButton.mousePressed(dropThePucks);
+
+  stopButton = createButton("Stop");
+  stopButton.position(335, 15);
+  stopButton.mousePressed(stopAll);
 
   colsVal = createInput(7, 'number');
   colsVal.position(10, 15);
@@ -71,11 +75,11 @@ function setup()
   puckCount.size(70);
 
   resultsButton = createButton("Export Results");
-  resultsButton.position(340, 15);
+  resultsButton.position(388, 15);
   resultsButton.mousePressed(exportResults);
 
   testSetButton = createButton("Run Test Set");
-  testSetButton.position(455, 15);
+  testSetButton.position(500, 15);
   testSetButton.mousePressed(importTestSet);
 
   // Create the sketch
@@ -260,6 +264,12 @@ function setAspectRatio(row)
   print('Setting aspect ratio...');
   aspectRatio.value(row);
   print(aspectRatio.value());
+}
+
+function stopAll()
+{
+  dropPucks = false;
+  runningTestSet = false;
 }
 
 // Determine the number of pucks in each bin
