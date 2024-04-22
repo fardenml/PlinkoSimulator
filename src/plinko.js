@@ -345,8 +345,6 @@ function draw()
         dropPucks = false;
 
         storeTestResults();
-      
-        saveCanvas('ResultsImage_' + widthIndex, 'png');
 
         if(ratioIndex < testRatios.length)
         {
