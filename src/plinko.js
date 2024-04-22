@@ -13,8 +13,8 @@ var bounds = [];
 var cols;
 var rows;
 var binCounts;
-var pegSize = 14.1;
-var puckSize = 9.1;
+var pegSize = 14.2;
+var puckSize = 9.2;
 
 // UI controls
 var resetButton;
@@ -206,28 +206,28 @@ function storeTestResults()
 // Export the results
 function exportResults()
 {
-  if( pucks.length == puckCount.value() )
+  // Store the results from the current manual run
+  if(runningTestSet == false)
   {
-    // Store the results from the current manual run
-    if(runningTestSet == false)
-    {
-      storeTestResults();
-    }
+    storeTestResults();
+  }
 
-    // Build the results string
-    testResults = '<?xml version="1.0" encoding="utf-8" ?>' + endLine;
-    testResults += '<PlinkoTestResults>' + endLine;
-    testResults += '<PlinkoTestRuns>' + endLine;
-    testResults += resultsString;
-    testResults += '</PlinkoTestRuns>' + endLine;
-    testResults += '</PlinkoTestResults>';
+  // Build the results string
+  testResults = '<?xml version="1.0" encoding="utf-8" ?>' + endLine;
+  testResults += '<PlinkoTestResults>' + endLine;
+  testResults += '<PlinkoTestRuns>' + endLine;
+  testResults += resultsString;
+  testResults += '</PlinkoTestRuns>' + endLine;
+  testResults += '</PlinkoTestResults>';
 
-    // .split() outputs an Array
-    let stringOut = split(testResults, endLine);
+  // .split() outputs an Array
+  let stringOut = split(testResults, endLine);
 
-    // Save the results string to an xml file
-    saveStrings(stringOut, 'TestResults', 'xml');
+  // Save the results string to an xml file
+  saveStrings(stringOut, 'TestResults', 'xml');
 
+  if(runninigTtestSet == false)
+  {
     // Save the current canvas as a png for the report
     saveCanvas('ResultsImage', 'png');
   }
@@ -241,6 +241,9 @@ function importTestSet()
 function runTestSet()
 {
   runningTestSet = true;
+
+  testResults = '';
+  resultsString = '';
 
   let set = testSet.getChildren(); 
   
@@ -342,8 +345,6 @@ function draw()
         dropPucks = false;
 
         storeTestResults();
-
-        pucks = [];
       
         if(ratioIndex < testRatios.length)
         {
@@ -360,6 +361,8 @@ function draw()
 
     if(widthIndex == testWidths.length)
     {
+      saveCanvas('ResultsImage_' + widthIndex, 'png');
+
       exportResults();
       runningTestSet = false;
     }
