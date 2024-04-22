@@ -250,6 +250,9 @@ function runTestSet()
 
   testWidths = split(testWidth, ',');
   testRatios = split(testRatio, ',');
+
+  widthIndex = 0;
+  ratioIndex = 0;
 }
 
 function setWidth(col)
@@ -339,9 +342,6 @@ function draw()
   {
     if(dropPucks == false)
     {
-      widthIndex = 0;
-      ratioIndex = 0;
-
       // Set the width
       setWidth(testWidths[widthIndex]);
 
