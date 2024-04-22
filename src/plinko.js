@@ -238,19 +238,16 @@ function runTestSet()
   let testWidths = split(testWidth, ',');
   let testRatios = split(testRatio, ',');
 
-  let widthIndex = 0;
-  let ratioIndex = 0;
-
   for (var i = 0; i < testWidths.length; i++)
   { 
     // Set the width
-    colsVal.value(testWidths[widthIndex]);
+    setWidth(testWidths[i]);
 
     // Loop through the aspect ratios
     for (var j = 0; j < testRatios.length; j++)
     {
       // Set the aspect ratio
-      aspectRatio.value(testRatios[ratioIndex]);
+      setAspectRatio(testRatios[j]);
     
       // Update the sketch
       createSketch();
@@ -262,16 +259,26 @@ function runTestSet()
       dropThePucks();
   
       storeTestResults();
-
-      ratioIndex++;
     }
-
-    widthIndex++;
   }
 
   exportResults();
 
   runningTestSet = false;
+}
+
+function setWidth(col)
+{
+  print('Setting width...')
+  colsVal.value(col);
+  print(colsVal.value());
+}
+
+function setAspectRatio(row)
+{
+  print('Setting aspect ratio...');
+  aspectRatio.value(row);
+  print(aspectRatio.value());
 }
 
 // Determine the number of pucks in each bin
