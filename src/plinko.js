@@ -15,7 +15,6 @@ var rows;
 var binCounts;
 var pegSize = 14.1;
 var puckSize = 9.1;
-let runningTestSet = false;
 
 // UI controls
 var resetButton
@@ -33,6 +32,16 @@ let resultsString = '';
 let endLine = '\n';
 let tab = '   ';
 let doubleTab = '      ';
+
+// Test Set variables
+let runningTestSet = false;
+let testWidth;
+let testRatio;
+let testDrops;
+let testWidths;
+let testRatios;
+let widthIndex = 0;
+let ratioIndex = 0;
 
 // Main setup function
 function setup() 
@@ -231,40 +240,12 @@ function runTestSet()
 
   let set = testSet.getChildren(); 
   
-  let testWidth = set[0].getContent();
-  let testRatio = set[1].getContent();
-  let testDrops = set[2].getContent();
+  testWidth = set[0].getContent();
+  testRatio = set[1].getContent();
+  testDrops = set[2].getContent();
 
-  let testWidths = split(testWidth, ',');
-  let testRatios = split(testRatio, ',');
-
-  for (var i = 0; i < testWidths.length; i++)
-  { 
-    // Set the width
-    setWidth(testWidths[i]);
-
-    // Loop through the aspect ratios
-    for (var j = 0; j < testRatios.length; j++)
-    {
-      // Set the aspect ratio
-      setAspectRatio(testRatios[j]);
-    
-      // Update the sketch
-      createSketch();
-  
-      // Set the number of drops
-      puckCount.value(testDrops);
-  
-      // Start!
-      dropThePucks();
-  
-      storeTestResults();
-    }
-  }
-
-  exportResults();
-
-  runningTestSet = false;
+  testWidths = split(testWidth, ',');
+  testRatios = split(testRatio, ',');
 }
 
 function setWidth(col)
@@ -336,6 +317,59 @@ function draw()
     if (frameCount % 30 == 0) 
     {
       newPuck();
+    }
+  }
+
+  if(pucks.length == puckCount.value)
+  {
+    dropPucks == false;
+  }
+
+  if(runningTestSet)
+  {
+    if(dropPucks == false)
+    {
+      widthIndex = 0;
+      ratioIndex = 0;
+
+      // Set the width
+      setWidth(testWidths[widthIndex]);
+
+      // Set the aspect ratio
+      setAspectRatio(testRatios[ratioIndex]);
+
+      // Update the sketch
+      createSketch();
+  
+      // Set the number of drops
+      puckCount.value(testDrops);
+  
+      // Start!
+      dropThePucks();
+    }
+
+    if(pucks.length == puckCount.value)
+    {
+      storeTestResults();
+
+      if(ratioIndex < testRatios.length)
+      {
+        ratioIndex++;
+      }
+    }
+
+    if(ratioIndex >= (testRatios.length -1))
+    {
+      ratioIndex = 0;
+      widthIndex++;
+    }
+
+    if(widthIndex >= (testWidths.length - 1))
+    {
+      exportResults();
+      runningTestSet = false;
+      widthIndex = 0;
+      ratioindex = 0;
     }
   }
 
