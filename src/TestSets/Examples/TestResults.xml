@@ -1,10 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <PlinkoTestResults>
 <PlinkoTestRuns>
+   <TestRunResult description="5 x 5" drops="100">
+      <BoardGeometry>5,5</BoardGeometry>
+      <ResultBins>20,13,24,13,28</ResultBins>
+      <ResultsImage>ResultsImage_5x5_AspectRatio_1.0.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="5 x 6" drops="100">
+      <BoardGeometry>5,6</BoardGeometry>
+      <ResultBins>15,22,22,23,18</ResultBins>
+      <ResultsImage>ResultsImage_5x6_AspectRatio_1.25.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="5 x 8" drops="100">
+      <BoardGeometry>5,8</BoardGeometry>
+      <ResultBins>11,19,33,22,15</ResultBins>
+      <ResultsImage>ResultsImage_5x8_AspectRatio_1.5.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="5 x 9" drops="100">
+      <BoardGeometry>5,9</BoardGeometry>
+      <ResultBins>19,27,11,24,19</ResultBins>
+      <ResultsImage>ResultsImage_5x9_AspectRatio_1.75.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="5 x 10" drops="100">
+      <BoardGeometry>5,10</BoardGeometry>
+      <ResultBins>11,23,17,29,19</ResultBins>
+      <ResultsImage>ResultsImage_5x10_AspectRatio_2.0.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="5 x 11" drops="100">
+      <BoardGeometry>5,11</BoardGeometry>
+      <ResultBins>22,19,26,19,14</ResultBins>
+      <ResultsImage>ResultsImage_5x11_AspectRatio_2.25.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="5 x 13" drops="100">
+      <BoardGeometry>5,13</BoardGeometry>
+      <ResultBins>20,17,20,24,19</ResultBins>
+      <ResultsImage>ResultsImage_5x13_AspectRatio_2.5.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="7 x 7" drops="100">
+      <BoardGeometry>7,7</BoardGeometry>
+      <ResultBins>20,17,7,7,11,12,26</ResultBins>
+      <ResultsImage>ResultsImage_7x7_AspectRatio_1.0.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="7 x 9" drops="100">
+      <BoardGeometry>7,9</BoardGeometry>
+      <ResultBins>29,7,5,10,8,11,29</ResultBins>
+      <ResultsImage>ResultsImage_7x9_AspectRatio_1.25.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="7 x 11" drops="100">
+      <BoardGeometry>7,11</BoardGeometry>
+      <ResultBins>16,9,17,21,13,10,14</ResultBins>
+      <ResultsImage>ResultsImage_7x11_AspectRatio_1.5.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="7 x 12" drops="100">
+      <BoardGeometry>7,12</BoardGeometry>
+      <ResultBins>16,10,9,12,14,18,21</ResultBins>
+      <ResultsImage>ResultsImage_7x12_AspectRatio_1.75.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="7 x 14" drops="100">
+      <BoardGeometry>7,14</BoardGeometry>
+      <ResultBins>11,10,13,15,19,20,12</ResultBins>
+      <ResultsImage>ResultsImage_7x14_AspectRatio_2.0.png</ResultsImage>
+   </TestRunResult>
+   <TestRunResult description="7 x 16" drops="100">
+      <BoardGeometry>7,16</BoardGeometry>
+      <ResultBins>15,20,9,9,13,17,15</ResultBins>
+      <ResultsImage>ResultsImage_7x16_AspectRatio_2.25.png</ResultsImage>
+   </TestRunResult>
    <TestRunResult description="7 x 18" drops="100">
       <BoardGeometry>7,18</BoardGeometry>
-      <ResultBins>14,24,12,8,19,13,10</ResultBins>
-      <ResultsImage>ResultsImage.png</ResultsImage>
+      <ResultBins>13,11,18,13,14,22,9</ResultBins>
+      <ResultsImage>ResultsImage_7x18_AspectRatio_2.5.png</ResultsImage>
    </TestRunResult>
 </PlinkoTestRuns>
 </PlinkoTestResults>
