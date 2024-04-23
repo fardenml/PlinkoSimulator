@@ -282,7 +282,7 @@ function getBinVals()
   for (let j = 0; j < bins.length; j++)
   {
     let bin_x = bins[j].body.position.x;
-    let offset = (width / cols);
+    let offset = (width / cols) - 5;
     let next_x = int(bin_x) + offset;
 
     for (let i = 0; i < pucks.length; i++)
