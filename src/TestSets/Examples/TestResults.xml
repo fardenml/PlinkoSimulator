@@ -3,72 +3,72 @@
 <PlinkoTestRuns>
    <TestRunResult description="5 x 5" drops="100">
       <BoardGeometry>5,5</BoardGeometry>
-      <ResultBins>20,13,24,13,28</ResultBins>
+      <ResultBins>27,14,15,15,29</ResultBins>
       <ResultsImage>ResultsImage_5x5_AspectRatio_1.0.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="5 x 6" drops="100">
       <BoardGeometry>5,6</BoardGeometry>
-      <ResultBins>15,22,22,23,18</ResultBins>
+      <ResultBins>17,33,16,17,17</ResultBins>
       <ResultsImage>ResultsImage_5x6_AspectRatio_1.25.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="5 x 8" drops="100">
       <BoardGeometry>5,8</BoardGeometry>
-      <ResultBins>11,19,33,22,15</ResultBins>
+      <ResultBins>18,20,21,23,18</ResultBins>
       <ResultsImage>ResultsImage_5x8_AspectRatio_1.5.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="5 x 9" drops="100">
       <BoardGeometry>5,9</BoardGeometry>
-      <ResultBins>19,27,11,24,19</ResultBins>
+      <ResultBins>13,18,18,27,24</ResultBins>
       <ResultsImage>ResultsImage_5x9_AspectRatio_1.75.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="5 x 10" drops="100">
       <BoardGeometry>5,10</BoardGeometry>
-      <ResultBins>11,23,17,29,19</ResultBins>
+      <ResultBins>19,29,17,22,13</ResultBins>
       <ResultsImage>ResultsImage_5x10_AspectRatio_2.0.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="5 x 11" drops="100">
       <BoardGeometry>5,11</BoardGeometry>
-      <ResultBins>22,19,26,19,14</ResultBins>
+      <ResultBins>20,24,26,12,18</ResultBins>
       <ResultsImage>ResultsImage_5x11_AspectRatio_2.25.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="5 x 13" drops="100">
       <BoardGeometry>5,13</BoardGeometry>
-      <ResultBins>20,17,20,24,19</ResultBins>
+      <ResultBins>20,16,25,12,27</ResultBins>
       <ResultsImage>ResultsImage_5x13_AspectRatio_2.5.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="7 x 7" drops="100">
       <BoardGeometry>7,7</BoardGeometry>
-      <ResultBins>20,17,7,7,11,12,26</ResultBins>
+      <ResultBins>23,15,6,6,12,19,19</ResultBins>
       <ResultsImage>ResultsImage_7x7_AspectRatio_1.0.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="7 x 9" drops="100">
       <BoardGeometry>7,9</BoardGeometry>
-      <ResultBins>29,7,5,10,8,11,29</ResultBins>
+      <ResultBins>29,11,5,5,14,11,25</ResultBins>
       <ResultsImage>ResultsImage_7x9_AspectRatio_1.25.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="7 x 11" drops="100">
       <BoardGeometry>7,11</BoardGeometry>
-      <ResultBins>16,9,17,21,13,10,14</ResultBins>
+      <ResultBins>15,12,15,12,7,19,19</ResultBins>
       <ResultsImage>ResultsImage_7x11_AspectRatio_1.5.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="7 x 12" drops="100">
       <BoardGeometry>7,12</BoardGeometry>
-      <ResultBins>16,10,9,12,14,18,21</ResultBins>
+      <ResultBins>14,12,19,13,17,11,13</ResultBins>
       <ResultsImage>ResultsImage_7x12_AspectRatio_1.75.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="7 x 14" drops="100">
       <BoardGeometry>7,14</BoardGeometry>
-      <ResultBins>11,10,13,15,19,20,12</ResultBins>
+      <ResultBins>9,19,17,23,14,9,9</ResultBins>
       <ResultsImage>ResultsImage_7x14_AspectRatio_2.0.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="7 x 16" drops="100">
       <BoardGeometry>7,16</BoardGeometry>
-      <ResultBins>15,20,9,9,13,17,15</ResultBins>
+      <ResultBins>9,16,20,12,13,14,15</ResultBins>
       <ResultsImage>ResultsImage_7x16_AspectRatio_2.25.png</ResultsImage>
    </TestRunResult>
    <TestRunResult description="7 x 18" drops="100">
       <BoardGeometry>7,18</BoardGeometry>
-      <ResultBins>13,11,18,13,14,22,9</ResultBins>
+      <ResultBins>14,14,12,11,19,16,14</ResultBins>
       <ResultsImage>ResultsImage_7x18_AspectRatio_2.5.png</ResultsImage>
    </TestRunResult>
 </PlinkoTestRuns>
