@@ -24,7 +24,7 @@ Puck.prototype.isOffScreen = function ()
 {
   var x = this.body.position.x;
   var y = this.body.position.y;
-  return x < -50 || x > width + 50 || y > height;
+  return x < 0 || x > width || y > height;
 };
 
 Puck.prototype.show = function ()
