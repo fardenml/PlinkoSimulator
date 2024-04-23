@@ -14,8 +14,8 @@ var bins = [];
 var cols;
 var rows;
 var binCounts = [];
-var pegSize = 14.3;
-var puckSize = 9.2;
+var pegSize = 15;
+var puckSize = 9.8;
 
 // UI controls
 var resetButton;
