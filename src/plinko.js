@@ -33,6 +33,7 @@ let resultsString = '';
 let endLine = '\n';
 let tab = '   ';
 let doubleTab = '      ';
+let resultsImageName;
 
 // Test Set variables
 let runningTestSet = false;
@@ -198,7 +199,8 @@ function storeTestResults()
   }
 
   resultsString += '</ResultBins>' + endLine;
-  resultsString += doubleTab + '<ResultsImage>ResultsImage.png</ResultsImage>' + endLine;
+  resultsImageName = 'ResultsImage_' + cols + 'x' + rows + '_AspectRatio_' + aspectRatio.value();
+  resultsString += doubleTab + '<ResultsImage>' + resultsImageName + '.png' + '</ResultsImage>' + endLine;
   resultsString += tab + '</TestRunResult>' + endLine;
 }
 
@@ -225,11 +227,8 @@ function exportResults()
   // Save the results string to an xml file
   saveStrings(stringOut, 'TestResults', 'xml');
 
-  if(runningTestSet == false)
-  {
-    // Save the current canvas as a png for the report
-    saveCanvas('ResultsImage', 'png');
-  }
+  // Save the current canvas as a png for the report
+  saveCanvas(resultsImageName, 'png');
 }
 
 function importTestSet()
