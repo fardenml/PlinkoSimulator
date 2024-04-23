@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <PlinkoTestResults>
 <PlinkoTestRuns>
-   <TestRunResult description="7 x 18" drops="50">
+   <TestRunResult description="7 x 18" drops="100">
       <BoardGeometry>7,18</BoardGeometry>
-      <ResultBins>12,7,4,8,4,7,8</ResultBins>
+      <ResultBins>14,24,12,8,19,13,10</ResultBins>
       <ResultsImage>ResultsImage.png</ResultsImage>
    </TestRunResult>
 </PlinkoTestRuns>
