@@ -10,9 +10,10 @@ var world;
 var pucks = [];
 var pegs = [];
 var bounds = [];
+var bins = [];
 var cols;
 var rows;
-var binCounts;
+var binCounts = [];
 var pegSize = 14.3;
 var puckSize = 9.2;
 
@@ -97,7 +98,8 @@ function createSketch()
   pucks = [];
   pegs = [];
   bounds = [];
-  binCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  bins = [];
+  binCounts = [0, 0, 0, 0, 0, 0, 0, 0];
   cols = round(colsVal.value());
   rows = round(colsVal.value() * aspectRatio.value());
   puckCount.value(1);
@@ -150,14 +152,14 @@ function createBoard()
 // Create the puck bins
 function createBins()
 {
-  for (var i = 0; i < 10; i++) 
+  for (var i = 0; i <= cols; i++) 
   {
-    var x = i * width / 9;
+    var x = i * width / cols;
     var h = 110;
     var w = 10;
     var y = height - h / 2;
     var b = new Boundary(x, y, w, h);
-    bounds.push(b);
+    bins.push(b);
   }
 }
 
@@ -177,11 +179,8 @@ function dropThePucks()
 // Store the test results
 function storeTestResults()
 {
-  // Gather all the puck counts
-  for (var i = 0; i < pucks.length; i++)
-  {
-    binVals(pucks[i].body.position.x, pucks[i].body.position.y);
-  }
+  // Gather all the bin values
+  getBinVals();
 
   // Build the results string
   resultsString += tab + '<TestRunResult description=\"' + cols + ' x ' + rows + '\" drops=\"' + pucks.length + '\">' + endLine;
@@ -189,10 +188,10 @@ function storeTestResults()
   resultsString += doubleTab + '<ResultBins>';
 
   // Write all the puck counts
-  for (let i = 0; i < 9; i++)
+  for (let i = 0; i < bins.length - 1; i++)
   {
     resultsString += binCounts[i];
-    if(i != 8)
+    if(i != cols - 1)
     {
       resultsString += ',';
     }
@@ -279,48 +278,28 @@ function stopAll()
 }
 
 // Determine the number of pucks in each bin
-function binVals(x, y)
+function getBinVals()
 {
-  if( y > (height - 110) )
+  for (let j = 0; j < bins.length; j++)
   {
-    if( x > 0 && x < 66 )
+    let bin_x = bins[j].body.position.x;
+    let next_x = int(bin_x) + 100;
+
+    for (let i = 0; i < pucks.length; i++)
     {
-      binCounts[0]++;
-    }
-    else if( x > 67 && x < 133 )
-    {
-      binCounts[1]++;
-    }
-    else if( x > 134 && x < 200 )
-    {
-      binCounts[2]++;
-    }
-    else if( x > 201 && x < 266 )
-    {
-      binCounts[3]++;
-    }
-    else if( x > 267 && x < 333 )
-    {
-      binCounts[4]++;
-    }
-    else if( x > 334 && x < 400 )
-    {
-      binCounts[5]++;
-    }
-    else if( x > 401 && x < 466 )
-    {
-      binCounts[6]++;
-    }
-    else if( x > 467 && x < 533 )
-    {
-      binCounts[7]++;
-    }
-    else if( x > 534 && x < 600 )
-    {
-      binCounts[8]++;
+      let puck_y = pucks[i].body.position.y;
+      let puck_x = pucks[i].body.position.x;
+
+      if( puck_y > (height - 110) )
+      {
+        if(puck_x > bin_x && puck_x < next_x)
+        {
+          binCounts[j]++;
+        }
+      }
     }
   }
-};
+}
 
 // Main draw function
 function draw()
@@ -416,22 +395,10 @@ function draw()
   text("Aspect Ratio", 55, 10);
   text("Pucks to Drop", 195, 10);
 
-  // Bin labels
-  var y = height - 100;
-  text("0", 30, y);
-  text("1", 95, y);
-  text("2", 165, y);
-  text("3", 230, y);
-  text("4", 295, y);
-  text("5", 365, y);
-  text("6", 430, y);
-  text("7", 495, y);
-  text("8", 560, y);
-
   for (var i = 0; i < pucks.length; i++)
   {
     pucks[i].show();
-    if (pucks[i].body.position.y > 650)
+    if (pucks[i].body.position.y > height - 110)
     {
       pucks[i].setPhysics(); 
     }
@@ -450,5 +417,15 @@ function draw()
   for (var i = 0; i < bounds.length; i++)
   {
     bounds[i].show();
+  }
+  for (var i = 0; i < bins.length; i++)
+  {
+    bins[i].show();
+    
+    // Bin labels
+    var offset = 40;
+    var y = height - 100;
+    var x = bins[i].body.position.x + offset;
+    text(i, x, y);
   }
 }
