@@ -283,7 +283,8 @@ function getBinVals()
   for (let j = 0; j < bins.length; j++)
   {
     let bin_x = bins[j].body.position.x;
-    let next_x = int(bin_x) + 100;
+    let offset = (width / cols);
+    let next_x = int(bin_x) + offset;
 
     for (let i = 0; i < pucks.length; i++)
     {
@@ -423,7 +424,7 @@ function draw()
     bins[i].show();
     
     // Bin labels
-    var offset = 40;
+    var offset = (width / cols) / 2;
     var y = height - 100;
     var x = bins[i].body.position.x + offset;
     text(i, x, y);
