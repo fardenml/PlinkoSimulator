@@ -202,6 +202,9 @@ function storeTestResults()
   resultsImageName = 'ResultsImage_' + cols + 'x' + rows + '_AspectRatio_' + aspectRatio.value();
   resultsString += doubleTab + '<ResultsImage>' + resultsImageName + '.png' + '</ResultsImage>' + endLine;
   resultsString += tab + '</TestRunResult>' + endLine;
+
+  // Save the current canvas as a png for the report
+  saveCanvas(resultsImageName, 'png');
 }
 
 // Export the results
@@ -226,9 +229,6 @@ function exportResults()
 
   // Save the results string to an xml file
   saveStrings(stringOut, 'TestResults', 'xml');
-
-  // Save the current canvas as a png for the report
-  saveCanvas(resultsImageName, 'png');
 }
 
 function importTestSet()
@@ -307,6 +307,74 @@ function draw()
   background(0, 0, 0);
   Engine.update(engine, 1000 / 30);
 
+  // Control labels
+  fill(0, 0, 100);
+  text("Width", 12, 10);
+  text("Aspect Ratio", 55, 10);
+  text("Pucks to Drop", 195, 10);
+
+  // Show the bodies in the world
+  for (var i = 0; i < pucks.length; i++)
+  {
+    pucks[i].show();
+    if (pucks[i].body.position.y > height - 110)
+    {
+      pucks[i].setPhysics(); 
+    }
+
+    if (pucks[i].isOffScreen())
+    {
+      World.remove(world, pucks[i].body);
+      pucks.splice(i, 1);
+      i--;
+    }
+  }
+  for (var i = 0; i < pegs.length; i++)
+  {
+    pegs[i].show();
+  }
+  for (var i = 0; i < bounds.length; i++)
+  {
+    bounds[i].show();
+  }
+  for (var i = 0; i < bins.length; i++)
+  {
+    bins[i].show();
+    
+    // Bin labels
+    var offset = (width / cols) / 2;
+    var y = height - 100;
+    var x = bins[i].body.position.x + offset;
+    text(i, x, y);
+  }
+
+  // Limit the number of rows, cols, and pucks
+  if(aspectRatio.value() > 2.5)
+  {
+    aspectRatio.value(2.5);
+  }
+  else if(aspectRatio.value() < 1)
+  {
+    aspectRatio.value(1);
+  }
+  else if(colsVal.value() > 7)
+  {
+    colsVal.value(7);
+  }
+  else if(colsVal.value() < 5)
+  {
+    colsVal.value(5);
+  }
+  else if(puckCount.value() > 100)
+  {
+    puckCount.value(100);
+  }
+  else
+  {
+    // do nothing
+  }
+
+  // Drop the pucks
   if(dropPucks && pucks.length < puckCount.value())
   {
     if (frameCount % 30 == 0) 
@@ -315,6 +383,7 @@ function draw()
     }
   }
 
+  // Logic when running an automated test set
   if(runningTestSet)
   {
     if(pucks.length == puckCount.value())
@@ -361,71 +430,5 @@ function draw()
       // Start!
       dropThePucks();
     }
-  }
-
-  // Limit the number of rows, cols, and pucks
-  if(aspectRatio.value() > 2.5)
-  {
-    aspectRatio.value(2.5);
-  }
-  else if(aspectRatio.value() < 1)
-  {
-    aspectRatio.value(1);
-  }
-  else if(colsVal.value() > 7)
-  {
-    colsVal.value(7);
-  }
-  else if(colsVal.value() < 5)
-  {
-    colsVal.value(5);
-  }
-  else if(puckCount.value() > 100)
-  {
-    puckCount.value(100);
-  }
-  else
-  {
-    // do nothing
-  }
-
-  // Control labels
-  fill(0, 0, 100);
-  text("Width", 12, 10);
-  text("Aspect Ratio", 55, 10);
-  text("Pucks to Drop", 195, 10);
-
-  for (var i = 0; i < pucks.length; i++)
-  {
-    pucks[i].show();
-    if (pucks[i].body.position.y > height - 110)
-    {
-      pucks[i].setPhysics(); 
-    }
-
-    if (pucks[i].isOffScreen())
-    {
-      World.remove(world, pucks[i].body);
-      pucks.splice(i, 1);
-      i--;
-    }
-  }
-  for (var i = 0; i < pegs.length; i++)
-  {
-    pegs[i].show();
-  }
-  for (var i = 0; i < bounds.length; i++)
-  {
-    bounds[i].show();
-  }
-  for (var i = 0; i < bins.length; i++)
-  {
-    bins[i].show();
-    
-    // Bin labels
-    var offset = (width / cols) / 2;
-    var y = height - 100;
-    var x = bins[i].body.position.x + offset;
-    text(i, x, y);
   }
 }
