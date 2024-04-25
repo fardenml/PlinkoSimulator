@@ -100,7 +100,7 @@ function createSketch()
   pegs = [];
   bounds = [];
   bins = [];
-  binCounts = [0, 0, 0, 0, 0, 0, 0, 0];
+  binCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   cols = round(colsVal.value());
   rows = round(colsVal.value() * aspectRatio.value());
   puckCount.value(1);
