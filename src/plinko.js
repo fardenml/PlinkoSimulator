@@ -349,17 +349,25 @@ function draw()
   }
 
   // Limit the number of rows, cols, and pucks
-  if(aspectRatio.value() > 2.5)
+  if(colsVal.value() < 8 && aspectRatio.value() > 2.5)
   {
     aspectRatio.value(2.5);
+  }
+  else if(colsVal.value() == 8 && aspectRatio.value() > 2.25)
+  {
+    aspectRatio.value(2.25);
+  }
+  else if(colsVal.value() == 9 && aspectRatio.value() > 2)
+  {
+    aspectRatio.value(2);
   }
   else if(aspectRatio.value() < 1)
   {
     aspectRatio.value(1);
   }
-  else if(colsVal.value() > 7)
+  else if(colsVal.value() > 9)
   {
-    colsVal.value(7);
+    colsVal.value(9);
   }
   else if(colsVal.value() < 5)
   {
