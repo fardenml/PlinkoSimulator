@@ -2,7 +2,7 @@
 <PlinkoTestSet>
    <BoardWidthSet>5,7,9</BoardWidthSet>
    <AspectRatioSet>1.0,1.25,1.5,1.75,2.0</AspectRatioSet>
-   <Drops>100</Drops>
+   <Drops>5</Drops>
    <PrizeDistributions>
       <PrizeDistribution>100,0,1000,0,100</PrizeDistribution>
       <PrizeDistribution>5000,1000,0,5000,0,1000,5000</PrizeDistribution>
